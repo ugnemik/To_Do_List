@@ -1,0 +1,141 @@
+html {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 300;
+  background: #3d7eaa;
+  background: -webkit-linear-gradient(to right, #ffe47a, #3d7eaa);
+  background: linear-gradient(to right, #ffe47a, #3d7eaa);
+}
+
+h1,
+h2 {
+  font-weight: 500;
+}
+.btn {
+  margin-top: 1em;
+  padding: 0.7em 2em;
+  background: #3d7eaa;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 2em 1em;
+  overflow: hidden;
+}
+
+.card {
+  border-radius: 15px;
+  padding: 2em;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.card .card-content .card-title {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.card .card-content .card-title .title {
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 700;
+}
+
+.card .card-content .card-title #pending-tasks {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.card .card-content .card-title #date {
+  margin-top: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+.input-field input {
+  width: calc(100% - 1em);
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  padding: 1em 0.5em;
+}
+
+.input-field input:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.card-action .tasks-title {
+  text-align: center;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.decorated {
+  overflow: hidden;
+  text-align: center;
+}
+.decorated > span {
+  position: relative;
+  display: inline-block;
+}
+.decorated > span:before,
+.decorated > span:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  width: 100vw;
+  margin: 0 20px;
+}
+.decorated > span:before {
+  right: 100%;
+}
+.decorated > span:after {
+  left: 100%;
+}
+
+.collection {
+  padding-left: 0;
+}
+
+.collection .collection-item {
+  list-style-type: none;
+  padding-left: 2.2em;
+  margin-top: 0.5em;
+  padding-top: 1em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.collection .collection-item:before {
+  content: "\f046"; /* FontAwesome Unicode */
+  color: #3d7eaa;
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-left: -1.5em;
+  width: 1.5em;
+  font-size: 22px;
+}
+.delete-item {
+  float: right;
+  color: #ffe47a;
+}
+.delete-item i {
+  font-size: 22px;
+}
