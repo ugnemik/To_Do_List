@@ -5,6 +5,7 @@ const taskList = document.querySelector(".collection");
 const clearBtn = document.querySelector(".clear-tasks");
 const filter = document.querySelector("#filter");
 const taskInput = document.querySelector("#task");
+const buttons = document.querySelectorAll(".btn");
 
 //load all event listeners
 loadEventListeners();
@@ -23,18 +24,13 @@ function loadEventListeners() {
 }
 
 //get tasks from ls
-function getTasks() {
+function getTasks(e) {
   let tasks;
   if (localStorage.getItem("tasks") === null) {
     tasks = [];
   } else {
     tasks = JSON.parse(localStorage.getItem("tasks"));
   }
-
-  // update pending tasks number
-  document.getElementById(
-    "pending-tasks"
-  ).textContent = `${tasks.length} Pending Tasks`;
 
   tasks.forEach(function (task) {
     //create li element
@@ -46,18 +42,23 @@ function getTasks() {
     const link = document.createElement("a");
     link.className = "delete-item secondary-content";
     //add icon html
-    link.innerHTML =
-      '<i onClick="window.location.reload();" class="fa fa-trash"></i>';
+    link.innerHTML = '<i class="fa fa-trash"></i>';
     //append the lin to li
     li.appendChild(link);
 
     //append li to the ul
     taskList.appendChild(li);
   });
+  // update pending tasks number
+  document.getElementById(
+    "pending-tasks"
+  ).textContent = `${taskList.children.length} Pending Tasks`;
 }
 
 //add task
 function addTask(e) {
+  e.preventDefault();
+
   if (taskInput.value === "") {
     alert("Please add a task");
     return;
@@ -83,7 +84,6 @@ function addTask(e) {
 
   //clear input
   taskInput.value = "";
-  e.preventDefault();
 }
 
 //store task
@@ -100,6 +100,7 @@ function storeTaskInLocalStorage(task) {
 
 //remove task
 function removeTask(e) {
+  e.preventDefault();
   if (e.target.parentElement.classList.contains("delete-item")) {
     if (confirm("Are you sure? ")) {
       e.target.parentElement.parentElement.remove();
@@ -128,7 +129,8 @@ function removeTaskFromLocalStorage(taskItem) {
 }
 
 //clear tasks
-function clearTasks() {
+function clearTasks(e) {
+  e.preventDefault();
   while (taskList.firstChild) {
     taskList.removeChild(taskList.firstChild);
   }
