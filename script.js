@@ -49,16 +49,11 @@ function getTasks(e) {
     //append li to the ul
     taskList.appendChild(li);
   });
-  // update pending tasks number
-  document.getElementById(
-    "pending-tasks"
-  ).textContent = `${taskList.children.length} Pending Tasks`;
+  getPendingTasks();
 }
 
 //add task
 function addTask(e) {
-  e.preventDefault();
-
   if (taskInput.value === "") {
     alert("Please add a task");
     return;
@@ -84,6 +79,8 @@ function addTask(e) {
 
   //clear input
   taskInput.value = "";
+  getPendingTasks();
+  e.preventDefault();
 }
 
 //store task
@@ -100,13 +97,13 @@ function storeTaskInLocalStorage(task) {
 
 //remove task
 function removeTask(e) {
-  e.preventDefault();
   if (e.target.parentElement.classList.contains("delete-item")) {
     if (confirm("Are you sure? ")) {
       e.target.parentElement.parentElement.remove();
 
       //remove from ls
       removeTaskFromLocalStorage(e.target.parentElement.parentElement);
+      getPendingTasks();
     }
   }
 }
@@ -129,14 +126,14 @@ function removeTaskFromLocalStorage(taskItem) {
 }
 
 //clear tasks
-function clearTasks(e) {
-  e.preventDefault();
+function clearTasks() {
   while (taskList.firstChild) {
     taskList.removeChild(taskList.firstChild);
   }
 
   //clear from ls
   clearTasksFromLocalStorage();
+  getPendingTasks();
 }
 
 function clearTasksFromLocalStorage() {
@@ -164,3 +161,11 @@ date = new Date();
 var n = date.toDateString();
 
 dateEl.textContent = n;
+
+// update pending tasks number
+
+function getPendingTasks() {
+  document.getElementById(
+    "pending-tasks"
+  ).textContent = `${taskList.children.length} Pending Tasks`;
+}
